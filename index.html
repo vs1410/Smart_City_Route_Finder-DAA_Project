@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart City — Low Traffic Route Finder with Trend Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1> Smart City — Low Traffic Route Finder with Trend Analysis</h1>
+  </header>
+
+  <div class="container">
+    <div class="grid three-col">
+      <!-- LEFT column: Trends (moved left of canvas) -->
+      <aside class="left-col">
+        <div class="panel">
+          <h3>📊 Past Route Trends</h3>
+          <div id="history" class="log small"></div>
+          <button id="clearHistory" class="secondary">Clear History</button>
+        </div>
+
+        <div class="panel">
+          <h3>📈 Route Trend Summary</h3>
+          <div id="trendSummary" class="log small"></div>
+          <button id="refreshTrends" class="secondary">Refresh Summary</button>
+        </div>
+      </aside>
+
+      <!-- CENTER column: Controls + Canvas -->
+      <main class="center-col">
+        <!-- Controls -->
+        <div class="controls panel">
+          <div class="top-controls">
+            <label>Start</label>
+            <select id="start"></select>
+            <label>Destination</label>
+            <select id="end"></select>
+            <button id="findRoute">Find Route</button>
+            <button id="animateBtn" class="secondary">Toggle Animate</button>
+            <button id="resetBtn" class="secondary">Reset Graph</button>
+          </div>
+
+          <div class="bottom-controls">
+            <label>Directed</label>
+            <input type="checkbox" id="directedToggle" />
+            <label>Click canvas to set start/end</label>
+            <span class="muted">(First click = start, second = end)</span>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <div class="map-wrap panel">
+          <canvas id="mapCanvas" width="900" height="480"></canvas>
+        </div>
+
+        <!-- Output -->
+        <div class="panel" style="margin-top:12px;">
+          <div id="output" class="small"></div>
+        </div>
+      </main>
+
+      <!-- RIGHT column: Editor + Log -->
+      <aside class="right-col">
+        <!-- Graph Editor -->
+        <div class="panel">
+          <h3>Edit Graph</h3>
+          <div class="editor">
+            <div class="row">
+              <input id="newNodeName" placeholder="Node name (eg: F)" />
+              <input id="newNodeX" placeholder="x" />
+              <input id="newNodeY" placeholder="y" />
+              <button id="addNodeBtn">Add Node</button>
+            </div>
+
+            <div class="row">
+              <input id="edgeFrom" placeholder="From" />
+              <input id="edgeTo" placeholder="To" />
+              <input id="edgeWeight" placeholder="Weight" />
+              <button id="addEdgeBtn">Add/Update Edge</button>
+            </div>
+
+            <div class="row">
+              <button id="removeEdgeBtn" class="secondary">Remove Edge</button>
+              <button id="removeNodeBtn" class="secondary">Remove Node</button>
+            </div>
+            <div class="muted">Tip: Use coordinates (0 - 900, 0 - 480).</div>
+          </div>
+        </div>
+
+        <!-- Log Panel -->
+        <div class="panel">
+          <h3>Log & Info</h3>
+          <div id="log" class="log small"></div>
+          <div class="footer">Dijkstra uses Min-Heap & stores trend data in localStorage.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

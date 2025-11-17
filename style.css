@@ -1,0 +1,137 @@
+:root {
+  --blue: #007bff;
+  --dark: #1b2631;
+  --panel: #ffffff;
+  --muted: #475569;
+}
+
+/* Base */
+body {
+  font-family: Inter, Poppins, sans-serif;
+  background: #eaf2f8;
+  margin: 0;
+  color: var(--dark);
+}
+header {
+  background: var(--blue);
+  color: #fff;
+  padding: 12px 18px;
+}
+
+/* Container & grid */
+.container {
+  max-width: 1200px;
+  margin: 18px auto;
+  padding: 16px;
+}
+
+/* Three-column layout: left (trends), center (canvas), right (editor/log) */
+.grid.three-col {
+  display: grid;
+  grid-template-columns: 300px 1fr 340px; /* left narrow, center fluid, right medium */
+  gap: 14px;
+  align-items: start;
+}
+
+/* Column containers */
+.left-col,
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.center-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Panels and basic UI */
+.panel {
+  background: var(--panel);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.top-controls,
+.bottom-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+select, input, button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+}
+
+button {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #6b7280;
+}
+
+/* Canvas container for better centering on different screens */
+.map-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#mapCanvas {
+  background: #d9eaf7;
+  border-radius: 10px;
+  display: block;
+  margin: 6px 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Side panels */
+.small { font-size: 13px; color: #334155; }
+label { font-size: 13px; }
+.muted { color: var(--muted); font-size: 13px; }
+
+.right-col .log,
+.left-col .log {
+  height: 220px;
+  overflow: auto;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  background: #fbfeff;
+}
+
+/* Editor layout */
+.editor .row { display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+
+/* Responsive: collapse to two columns on narrow screens */
+@media (max-width: 1000px) {
+  .grid.three-col { grid-template-columns: 1fr; }
+  .map-wrap { order: 2; }
+  .left-col { order: 1; }
+  .right-col { order: 3; }
+  #mapCanvas { width: 100%; height: 420px; }
+}
+
+/* small aesthetic */
+h3 { margin: 0 0 8px 0; }
+.footer { font-size: 13px; color: var(--muted); margin-top: 8px; }
